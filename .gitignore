@@ -1,0 +1,16 @@
+# Environment Variables (Sensitive Data)
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Netlify
+.netlify/

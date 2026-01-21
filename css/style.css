@@ -1,0 +1,185 @@
+:root {
+    --primary-color: #39FF14; /* Neon Green */
+    --primary-dim: rgba(57, 255, 20, 0.2);
+    --bg-color: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 12px;
+    
+    --danger-color: #FF3B30;
+    --warning-color: #FFCC00;
+    --safe-color: #39FF14;
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(57, 255, 20, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(57, 255, 20, 0.05) 0%, transparent 40%);
+}
+
+.app-container {
+    width: 100%;
+    max-width: 480px; /* Mobile constraint */
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: rgba(255,255,255,0.01);
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.logo-text {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.highlight {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-dim);
+}
+
+/* Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    border: none;
+    background: var(--glass-bg);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: black;
+    box-shadow: 0 0 15px var(--primary-dim);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 5px var(--primary-dim);
+}
+
+.btn-glass {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Splash Screen */
+.splash-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 0.5s ease-in-out 1.5s forwards;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* Layouts */
+.view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.view.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Input Floats */
+.chat-bubble {
+    background: rgba(255,255,255,0.08);
+    padding: 16px 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 4px;
+    margin-bottom: 16px;
+    max-width: 85%;
+    line-height: 1.5;
+    animation: slideInLeft 0.4s ease;
+}
+
+.chat-bubble.user {
+    background: var(--primary-color);
+    color: black;
+    align-self: flex-end;
+    border-radius: 20px;
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+    animation: slideInRight 0.4s ease;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideInRight {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

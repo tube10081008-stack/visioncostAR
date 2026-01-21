@@ -1,0 +1,23 @@
+[build]
+  command = "pip install -r backend/requirements.txt"
+  publish = "."
+  functions = "backend"
+
+[dev]
+  command = "uvicorn backend.main:app --reload"
+  publish = "."
+
+[[redirects]]
+  from = "/analyze"
+  to = "/.netlify/functions/main/analyze"
+  status = 200
+
+[[redirects]]
+  from = "/docs"
+  to = "/.netlify/functions/main/docs"
+  status = 200
+
+[[redirects]]
+  from = "/openapi.json"
+  to = "/.netlify/functions/main/openapi.json"
+  status = 200
