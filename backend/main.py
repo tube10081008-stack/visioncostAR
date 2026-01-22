@@ -163,7 +163,8 @@ async def analyze_product(
 app.mount("/", StaticFiles(directory=".", html=True), name="static")
 
 # Netlify/AWS Lambda Handler
-handler = Mangum(app)
+# We need to tell Mangum about the base path because Netlify rewrites /analyze -> /.netlify/functions/main/analyze
+handler = Mangum(app, api_gateway_base_path="/.netlify/functions/main")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

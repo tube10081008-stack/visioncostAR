@@ -170,8 +170,12 @@ class App {
 
             // 3. Call Backend
             console.log("Sending request to backend...");
-            // Use relative path for portability (Works on Localhost & Netlify)
-            const response = await fetch('/analyze', {
+
+            // Determine API URL: Use absolute path for Localhost (to support Live Server), relative for Netlify
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const apiUrl = isLocal ? 'http://localhost:8000/analyze' : '/analyze';
+
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 body: formData
             });
