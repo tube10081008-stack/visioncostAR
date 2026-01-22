@@ -1,10 +1,9 @@
 [build]
-  command = "pip install -t backend -r backend/requirements.txt"
+  command = "# No build step required for static assets"
   publish = "."
-  functions = "backend"
 
 [dev]
-  command = "uvicorn backend.analyze:app --reload"
+  command = "uvicorn netlify.functions.analyze:app --reload"
   publish = "."
 
 [[redirects]]
