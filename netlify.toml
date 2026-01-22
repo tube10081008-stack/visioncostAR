@@ -4,7 +4,7 @@
   functions = "backend"
 
 [dev]
-  command = "uvicorn backend.main:app --reload"
+  command = "uvicorn backend.analyze:app --reload"
   publish = "."
 
 [[redirects]]
