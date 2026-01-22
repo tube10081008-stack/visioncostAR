@@ -173,7 +173,7 @@ class App {
 
             // Determine API URL: Use absolute path for Localhost (to support Live Server), relative for Netlify
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const apiUrl = isLocal ? 'http://localhost:8000/analyze' : '/analyze';
+            const apiUrl = isLocal ? 'http://localhost:8000/analyze' : '/.netlify/functions/main/analyze';
 
             const response = await fetch(apiUrl, {
                 method: 'POST',
