@@ -1,5 +1,5 @@
 [build]
-  command = "pip install -r backend/requirements.txt"
+  command = "pip install -t backend -r backend/requirements.txt"
   publish = "."
   functions = "backend"
 

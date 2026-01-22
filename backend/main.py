@@ -27,6 +27,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Root Health Check
+@app.get("/")
+def health_check():
+    return {"status": "ok", "msg": "Backend Running"}
+
 # Configure Gemini
 api_key = os.environ.get("GEMINI_API_KEY")
 if api_key:
