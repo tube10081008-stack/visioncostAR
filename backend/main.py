@@ -27,10 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Root Health Check
-@app.get("/")
-def health_check():
-    return {"status": "ok", "msg": "Backend Running"}
+
 
 # Configure Gemini
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -81,7 +78,7 @@ def search_product_info(product_name):
         print(f"Search failed: {e}")
         return "추가 정보를 찾을 수 없습니다."
 
-@app.post("/")
+@app.post("/analyze")
 async def analyze_product(
     image: UploadFile = File(...),
     user_profile: str = Form(...)
@@ -169,7 +166,7 @@ app.mount("/", StaticFiles(directory=".", html=True), name="static")
 
 # Netlify/AWS Lambda Handler
 # We need to tell Mangum about the base path because Netlify rewrites /analyze -> /.netlify/functions/main/analyze
-handler = Mangum(app, api_gateway_base_path="/.netlify/functions/analyze")
+handler = Mangum(app)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

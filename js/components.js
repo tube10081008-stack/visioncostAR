@@ -110,7 +110,7 @@ export const Components = {
     `,
 
     result: (data) => `
-        <div id="view-result" class="view" style="overflow-y: auto;">
+        <div id="view-result" class="view" style="display: block; overflow-y: auto; padding-bottom: 40px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <button class="btn-glass" style="width: 40px; height: 40px; border-radius: 50%; padding:0; display:flex; align-items:center; justify-content:center;" onclick="window.location.reload()">
                     <span class="material-icons-round">arrow_back</span>
@@ -138,19 +138,22 @@ export const Components = {
             </div>
 
             <h3 style="margin-bottom: 12px;">더 나은 대체재 추천</h3>
-            <div style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px; margin: 0 -24px; padding-left: 24px;">
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
                 ${data.alternatives.map(alt => `
-                    <div class="glass-panel" style="min-width: 160px; padding: 15px;">
-                        <div style="width: 100%; height: 100px; background: #222; border-radius: 12px; margin-bottom: 10px; display:flex; align-items:center; justify-content:center;">
+                    <div class="glass-panel" style="padding: 15px; display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 60px; height: 60px; background: #222; border-radius: 12px; display:flex; align-items:center; justify-content:center; flex-shrink: 0;">
                             <span class="material-icons-round" style="color: #444;">image</span>
                         </div>
-                        <h4 style="font-size: 0.9rem; margin-bottom: 4px;">${alt.name}</h4>
-                        <span style="font-size: 0.8rem; color: var(--primary-color);">98% Match</span>
+                        <div style="flex: 1; min-width: 0;">
+                            <h4 style="font-size: 1rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${alt.name}</h4>
+                            <span style="font-size: 0.85rem; color: var(--primary-color);">98% 성분 일치</span>
+                        </div>
+                        <span class="material-icons-round" style="color: var(--text-secondary);">chevron_right</span>
                     </div>
                 `).join('')}
             </div>
 
-            <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="window.location.reload()">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="window.location.reload()">
                 다른 제품 스캔하기
             </button>
         </div>
