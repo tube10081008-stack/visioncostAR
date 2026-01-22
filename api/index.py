@@ -1,15 +1,13 @@
 import os
 import json
-import uvicorn
+
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 import google.generativeai as genai
 from PIL import Image
 import io
 from dotenv import load_dotenv
-from fastapi.staticfiles import StaticFiles
 from duckduckgo_search import DDGS
-from mangum import Mangum
 
 # Load environment variables from .env file
 # Looks for .env in the parent directory or current directory
@@ -161,12 +159,4 @@ async def analyze_product(
             "review_keywords": [],
             "alternatives": []
         }
-# Mount Frontend (Static Files) - MUST BE LAST
-app.mount("/", StaticFiles(directory=".", html=True), name="static")
 
-# Netlify/AWS Lambda Handler
-# We need to tell Mangum about the base path because Netlify rewrites /analyze -> /.netlify/functions/main/analyze
-handler = Mangum(app)
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)

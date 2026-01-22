@@ -1,9 +1,9 @@
 fastapi
-uvicorn
+
 google-generativeai
 python-multipart
 pillow
 python-dotenv
 aiofiles
 duckduckgo-search
-mangum
+
