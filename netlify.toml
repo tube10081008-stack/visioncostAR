@@ -1,6 +1,7 @@
 [build]
   command = "# No build step required for static assets"
   publish = "."
+  functions = "netlify/functions"
 
 [dev]
   command = "uvicorn netlify.functions.analyze:app --reload"
